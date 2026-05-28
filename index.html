@@ -129,20 +129,20 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 
 /* ============================================================ LIP CAN (3D cylinder puck) */
 /* Each can is driven by a single --flavor colour. Sized by parent (width + aspect-ratio:1). */
-.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(1000px) rotateX(20deg);transform-origin:center 50%}
-/* thin silver side wall — clean neutral rim (no coloured disc) */
-.can-rim{position:absolute;left:3%;right:3%;top:6%;bottom:-6%;border-radius:50%;z-index:1;
-  background:linear-gradient(90deg,#8fa0bd 0%,#dde6f1 14%,#ffffff 46%,#eef2f8 56%,#c8d3e6 84%,#8a9cba 100%);
-  box-shadow:0 8cqw 14cqw -5cqw rgba(20,40,85,.3),0 28cqw 38cqw -18cqw rgba(15,38,82,.3)}
+.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(900px) rotateX(26deg);transform-origin:center 50%}
+/* tall silver cylinder wall — thick & 3D, neutral (no coloured disc, no drop-shadow ellipse) */
+.can-rim{position:absolute;left:3%;right:3%;top:5%;bottom:-22%;border-radius:50%;z-index:1;
+  background:linear-gradient(180deg,transparent 34%,rgba(35,55,95,.14) 64%,rgba(28,46,84,.36) 92%,rgba(20,38,76,.2) 100%),linear-gradient(90deg,#7c90b1 0%,#d4dfee 14%,#ffffff 46%,#edf1f8 56%,#bdcae1 84%,#768bad 100%)}
 /* knurled metal texture, masked to the visible lower wall only */
 .can-rim::before{content:"";position:absolute;inset:0;border-radius:50%;
-  background:repeating-linear-gradient(90deg,rgba(110,135,175,.26) 0 .45cqw,transparent .45cqw 1.9cqw);
-  -webkit-mask:linear-gradient(180deg,transparent 56%,#000 82%);mask:linear-gradient(180deg,transparent 56%,#000 82%)}
-.can-rim::after{content:"";position:absolute;left:6%;right:6%;top:2cqw;height:42%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.6),transparent)}
+  background:repeating-linear-gradient(90deg,rgba(110,135,175,.28) 0 .45cqw,transparent .45cqw 1.9cqw);
+  -webkit-mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent);mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent)}
+/* bright bottom lip of the can for crisp 3D edge */
+.can-rim::after{content:"";position:absolute;left:9%;right:9%;bottom:1.5cqw;height:9%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
 /* top face — metallic sheen + embossed flavour border rings */
 .can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;
   background:conic-gradient(from 215deg,rgba(255,255,255,0),rgba(120,150,200,.12) 18%,rgba(255,255,255,0) 38%,rgba(120,150,200,.12) 64%,rgba(255,255,255,0) 84%),radial-gradient(circle at 37% 28%,#ffffff 0%,#f3f7fd 40%,#e4ebf6 70%,#cfdaec 100%);
-  box-shadow:inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),inset 0 0 0 2.2cqw var(--flavor),inset 0 0 0 2.9cqw rgba(255,255,255,.9),inset 0 0 0 3.6cqw color-mix(in srgb,var(--flavor) 32%,#fff)}
+  box-shadow:0 2.5cqw 4cqw -1cqw rgba(18,38,82,.34),inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),inset 0 0 0 2.2cqw var(--flavor),inset 0 0 0 2.9cqw rgba(255,255,255,.9),inset 0 0 0 3.6cqw color-mix(in srgb,var(--flavor) 32%,#fff)}
 .can-lid .gloss{position:absolute;top:-18%;left:-10%;width:80%;height:64%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),transparent 64%);transform:rotate(-16deg);z-index:2}
 .can-lid .ring{position:absolute;inset:11%;border-radius:50%;border:.6cqw dashed var(--flavor);opacity:.5}
 .can-lid .ring2{position:absolute;inset:16%;border-radius:50%;border:.4cqw solid color-mix(in srgb,var(--flavor) 30%,transparent);box-shadow:inset 0 0 0 .9cqw rgba(255,255,255,.5)}
@@ -305,7 +305,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
 .pcard{--flavor:#2f7df6}
 .pcard .top{aspect-ratio:1.25/1;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--flavor) 9%,#fff),color-mix(in srgb,var(--flavor) 24%,#fff))}
-.pcard .top .can{width:60%;margin-top:-4%;animation:canbob 5s var(--ease) infinite}
+.pcard .top .can{width:57%;margin-top:-9%;animation:canbob 5s var(--ease) infinite}
 .pcard:nth-child(2) .top .can{animation-duration:5.6s;animation-delay:-1.2s}
 .pcard:nth-child(3) .top .can{animation-duration:4.6s;animation-delay:-.6s}
 .pcard:nth-child(4) .top .can{animation-duration:5.2s;animation-delay:-2s}
