@@ -127,31 +127,30 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .mobile-menu a:hover{color:var(--accent-deep)}
 .mobile-menu .btn{margin-top:30px;align-self:flex-start;font-family:'Manrope';text-transform:none;font-size:1rem}
 
-/* ============================================================ LIP CAN (round 3D cylinder tin/puck) */
-/* Each can is driven by a single --flavor colour. Sized by parent (width + aspect-ratio:1). */
-.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(900px) rotateX(26deg);transform-origin:center 50%}
-/* tall silver cylinder wall — thick & 3D, neutral (no coloured disc) */
-.can-rim{position:absolute;left:3%;right:3%;top:5%;bottom:-22%;border-radius:50%;z-index:1;
-  background:linear-gradient(180deg,transparent 34%,rgba(35,55,95,.14) 64%,rgba(28,46,84,.36) 92%,rgba(20,38,76,.2) 100%),linear-gradient(90deg,#7c90b1 0%,#d4dfee 14%,#ffffff 46%,#edf1f8 56%,#bdcae1 84%,#768bad 100%)}
-.can-rim::before{content:"";position:absolute;inset:0;border-radius:50%;
-  background:repeating-linear-gradient(90deg,rgba(110,135,175,.28) 0 .45cqw,transparent .45cqw 1.9cqw);
-  -webkit-mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent);mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent)}
-.can-rim::after{content:"";position:absolute;left:9%;right:9%;bottom:1.5cqw;height:9%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
-.can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;
-  background:conic-gradient(from 215deg,rgba(255,255,255,0),rgba(120,150,200,.12) 18%,rgba(255,255,255,0) 38%,rgba(120,150,200,.12) 64%,rgba(255,255,255,0) 84%),radial-gradient(circle at 37% 28%,#ffffff 0%,#f3f7fd 40%,#e4ebf6 70%,#cfdaec 100%);
-  box-shadow:0 2.5cqw 4cqw -1cqw rgba(18,38,82,.34),inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),inset 0 0 0 2.2cqw var(--flavor),inset 0 0 0 2.9cqw rgba(255,255,255,.9),inset 0 0 0 3.6cqw color-mix(in srgb,var(--flavor) 32%,#fff)}
-.can-lid .gloss{position:absolute;top:-18%;left:-10%;width:80%;height:64%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),transparent 64%);transform:rotate(-16deg);z-index:2}
-.can-lid .ring{position:absolute;inset:11%;border-radius:50%;border:.6cqw dashed var(--flavor);opacity:.5}
-.can-lid .ring2{position:absolute;inset:16%;border-radius:50%;border:.4cqw solid color-mix(in srgb,var(--flavor) 30%,transparent);box-shadow:inset 0 0 0 .9cqw rgba(255,255,255,.5)}
-.can-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);z-index:3;padding:0 6%}
-.can-label .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:1;font-size:25cqw;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
-.can-label .wm .d{color:var(--flavor)}
-.can-label .cap{font-size:3.9cqw;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:.8cqw}
-.can-label .dose{font-size:11.5cqw;font-weight:800;line-height:.9;margin-top:2.4cqw;color:var(--flavor)}
-.can-label .dose span{font-size:.4em;vertical-align:super;font-weight:700}
-.can-label .fl{margin-top:1.6cqw;font-size:3.9cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
-/* gentle vertical float (no rotation) for non-galaxy cans */
-@keyframes canfloat{0%,100%{transform:perspective(900px) rotateX(26deg) translateY(0)}50%{transform:perspective(900px) rotateX(26deg) translateY(-3cqw)}}
+/* ============================================================ LIP CAN — real preserve-3d cylinder tin */
+/* Size via font-size on .can (all dims in em). --flavor drives colour. Faces built in JS. */
+.can{position:relative;display:grid;place-items:center;perspective:58em;--flavor:#2f7df6}
+.cyl{position:relative;width:20em;height:20em;transform-style:preserve-3d;transform:rotateX(-58deg);will-change:transform}
+.cyl>div{position:absolute;left:50%;top:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+/* round top lid + bottom (caps of the cylinder) */
+.cyl-top,.cyl-bottom{width:20em;height:20em;margin:-10em 0 0 -10em;border-radius:50%;overflow:hidden}
+.cyl-top{transform:rotateX(-90deg) translateZ(2.75em);background:radial-gradient(circle at 38% 30%,#ffffff,#f1f5fc 42%,#e2eaf5 72%,#c7d4e7 100%);box-shadow:inset 0 0 0 .55em var(--flavor),inset 0 0 0 1.05em rgba(255,255,255,.85),inset 0 0 0 1.4em color-mix(in srgb,var(--flavor) 30%,#fff)}
+.cyl-bottom{transform:rotateX(90deg) translateZ(2.75em);background:radial-gradient(circle at 60% 60%,#404d63,#222c3e)}
+/* vertical wall segments — together they form a real round cylinder */
+.cyl-seg{width:2.1em;height:5.5em;margin:-2.75em 0 0 -1.05em}
+/* lid detailing */
+.cyl-top .gloss{position:absolute;top:-14%;left:-8%;width:78%;height:62%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.92),transparent 64%);z-index:2}
+.cyl-top .ring{position:absolute;inset:11%;border-radius:50%;border:.18em dashed var(--flavor);opacity:.5}
+.cyl-top .ring2{position:absolute;inset:16%;border-radius:50%;border:.12em solid color-mix(in srgb,var(--flavor) 30%,transparent);box-shadow:inset 0 0 0 .26em rgba(255,255,255,.5)}
+.cyl-top .can-label{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 2em}
+.cyl-top .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:1;font-size:5.6em;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
+.cyl-top .wm .d{color:var(--flavor)}
+.cyl-top .cap{font-size:.92em;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#8294b4;margin-top:.5em}
+.cyl-top .dose{font-size:2.6em;font-weight:800;line-height:.9;margin-top:.4em;color:var(--flavor)}
+.cyl-top .dose span{font-size:.4em;vertical-align:super;font-weight:700}
+.cyl-top .fl{margin-top:.4em;font-size:.92em;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
+/* gentle vertical float (no rotation) */
+@keyframes canfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-1em)}}
 
 /* single floating pouch sachet — puffy 3D pillow */
 .pouch{position:absolute;border-radius:30% / 22%;
@@ -184,8 +183,8 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .hero-scene{position:relative;width:100%;flex:1;min-height:min(54vh,520px);margin-top:6px}
 .hero-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1040px,96vw);height:100%}
 .hero-can{position:absolute;transform:translate(-50%,-50%)}
-.hc-main{left:42%;top:46%;width:clamp(230px,33vw,360px);z-index:3;animation:drift 14s var(--ease-out) infinite}
-.hc-side{left:68%;top:40%;width:clamp(165px,24vw,272px);z-index:1;animation:drift2 17s var(--ease-out) infinite}
+.hc-main{left:42%;top:46%;font-size:clamp(11px,1.9vw,16px);z-index:3;animation:drift 14s var(--ease-out) infinite}
+.hc-side{left:68%;top:40%;font-size:clamp(8px,1.4vw,13px);z-index:1;animation:drift2 17s var(--ease-out) infinite}
 .hero-ground{bottom:6%;left:40%;width:34%;height:5%;animation:ground-pulse 14s var(--ease-out) infinite}
 .hero-ground-2{bottom:12%;left:64%;width:24%;height:4%;animation:ground-pulse 17s var(--ease-out) infinite;opacity:.7}
 @keyframes bob{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 16px))}}
@@ -259,7 +258,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .evolved{background:var(--bg);overflow:hidden}
 .evolved .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center}
 .evolved-art{position:relative;aspect-ratio:1;max-width:520px;margin-inline:auto;width:100%}
-.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56%;aspect-ratio:1;animation:bob 7s var(--ease) infinite;z-index:2}
+.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(9px,2.4vw,16px);animation:bob 7s var(--ease) infinite;z-index:2}
 .evolved-art .ground{bottom:4%;width:54%;height:30px}
 .evolved-art .pouch{width:clamp(40px,9%,64px);aspect-ratio:.72}
 .orb-pouch{left:50%;top:50%}
@@ -278,7 +277,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .story-visual{position:relative}
 .story-stage{position:relative;border-radius:var(--r-xl);aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center;font-size:clamp(10px,2vw,15px);background:radial-gradient(125% 95% at 30% 10%,#fbfdff,#e7eff9 46%,#d3e0f1 78%,#c2d3ea 100%);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7)}
 .story-stage::before{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 68%);filter:blur(20px);top:8%}
-.story-stage .can{width:64%;z-index:2;animation:canfloat 6s ease-in-out infinite}
+.story-stage .can{font-size:clamp(9px,1.9vw,15px);z-index:2;animation:canfloat 6s ease-in-out infinite}
 .story-stage .pouch{width:clamp(34px,4.4vw,52px);aspect-ratio:.72;z-index:3}
 .story-stage .sp1{top:12%;left:10%;animation:swirl1 8s var(--ease-out) infinite}
 .story-stage .sp2{bottom:14%;right:9%;animation:swirl2 9s var(--ease-out) infinite .5s}
@@ -308,7 +307,8 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
 .pcard{--flavor:#2f7df6}
 .pcard .top{aspect-ratio:1.25/1;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--flavor) 9%,#fff),color-mix(in srgb,var(--flavor) 24%,#fff))}
-.pcard .top .can{width:60%;animation:canfloat 5s ease-in-out infinite}
+.pcard{container-type:inline-size}
+.pcard .top .can{font-size:clamp(5px,2cqw,7.5px);animation:canfloat 5s ease-in-out infinite}
 .pcard:nth-child(2) .top .can{animation-duration:5.6s;animation-delay:-1.4s}
 .pcard:nth-child(3) .top .can{animation-duration:4.6s;animation-delay:-.7s}
 .pcard:nth-child(4) .top .can{animation-duration:5.2s;animation-delay:-2.4s}
@@ -446,7 +446,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .flv-counter{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:rgba(255,255,255,.7)}
 .flv-counter b{color:var(--flavor);transition:color .8s}
 .flv-watermark{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(4rem,19vw,18rem);line-height:.8;color:var(--flavor);opacity:.13;white-space:nowrap;pointer-events:none;text-align:center;transition:color .8s}
-.flv-can-wrap{width:min(440px,76vw);aspect-ratio:1;z-index:2;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
+.flv-can-wrap{font-size:clamp(12px,2.6vw,20px);z-index:2;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
 .flv-meta{position:absolute;bottom:max(70px,11vh);left:0;right:0;padding:0 28px;text-align:center;z-index:4;color:#fff}
 .flv-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.4rem);line-height:.9;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.4)}
 .flv-name .dot{color:var(--flavor);transition:color .8s}
@@ -885,20 +885,30 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
       flvMeta=document.getElementById('flvMeta'),flvDotsEls=flvSticky?[].slice.call(flvSticky.querySelectorAll('.flv-dots i')):[],
       flvCur=-1;
 
-  /* ---- build the lid + label of every round lip can ---- */
+  /* ---- build a real 3D cylinder tin: shaded wall segments + lid + bottom ---- */
+  function clamp(v,a,b){return v<a?a:v>b?b:v;}
   function buildBox(el){
     var name=el.getAttribute('data-name')||'';
     var dose=el.getAttribute('data-dose')||'100';
     var cap=el.getAttribute('data-cap')||'15 caffeine pouches';
     var compact=el.hasAttribute('data-compact')||!!el.closest('.pcard');
+    var N=32, segs='';
+    for(var k=0;k<N;k++){
+      var ang=k*360/N, shade=Math.cos(ang*Math.PI/180);
+      var l1=clamp(Math.round(56+34*shade),16,93), l2=clamp(l1-13,8,84);
+      segs+='<div class="cyl-seg" style="transform:rotateY('+ang+'deg) translateZ(10em);'
+        +'background:linear-gradient(180deg,hsl(216,22%,'+l1+'%),hsl(216,20%,'+l2+'%) 54%,'
+        +'var(--flavor) 60%,color-mix(in srgb,var(--flavor) 58%,#000) 100%)"></div>';
+    }
     var lbl='<div class="can-label"><div class="wm">lip<span class="d">.</span></div>'
       +(compact?'':'<div class="cap">'+cap+'</div>')
       +'<div class="dose">'+dose+'<span>mg</span></div>'
       +(name?'<div class="fl">'+name+'</div>':'')
       +'</div>';
-    el.innerHTML='<div class="can-rim"></div><div class="can-lid">'
-      +'<div class="gloss"></div><div class="ring"></div><div class="ring2"></div>'
-      +lbl+'</div>';
+    el.innerHTML='<div class="cyl">'+segs
+      +'<div class="cyl-bottom"></div>'
+      +'<div class="cyl-top"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div>'+lbl+'</div>'
+      +'</div>';
   }
   [].slice.call(document.querySelectorAll('.can')).forEach(buildBox);
 
@@ -925,11 +935,12 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
     var seg=p*FLAV.length, idx=Math.min(FLAV.length-1,Math.floor(seg)), lp=seg-idx;
     setFlavor(idx);
     var t=Math.sin(Math.min(1,Math.max(0,lp))*Math.PI);          /* 0 at edges (galaxy gap), 1 mid-flavour */
-    var spin=p*900;                                              /* the only rotation on the site — scroll-driven */
+    var spin=p*720;                                              /* the only rotation on the site — scroll-driven */
     var scale=0.72+0.28*t;
     var op=Math.min(1,t*1.7);
-    if(!reduce){
-      flvCan.style.transform='perspective(900px) rotateX(26deg) rotateZ('+spin+'deg)';
+    var cyl=flvCan&&flvCan.firstElementChild;
+    if(!reduce&&cyl){
+      cyl.style.transform='rotateX(-58deg) rotateY('+spin+'deg)';
     }
     flvCanWrap.style.transform='scale('+scale+')';
     flvCanWrap.style.opacity=op; flvWm.style.opacity=(0.04+0.12*t); flvMeta.style.opacity=op;
