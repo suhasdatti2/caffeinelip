@@ -126,16 +126,30 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .mobile-menu a:hover{color:var(--accent-deep)}
 .mobile-menu .btn{margin-top:30px;align-self:flex-start;font-family:'Manrope';text-transform:none;font-size:1rem}
 
-/* ============================================================ POUCH / TIN ART (shared) */
-.tin{position:relative;border-radius:50%;background:radial-gradient(circle at 38% 28%,#ffffff 0%,#eef2f9 42%,#dbe3f0 72%,#c7d3e6 100%);box-shadow:inset 0 10px 26px rgba(255,255,255,.9),inset 0 -26px 54px rgba(70,95,140,.18),var(--shadow-lg);display:grid;place-items:center}
-.tin::before{content:"";position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fff,#eaeff8);box-shadow:inset 0 2px 6px rgba(255,255,255,.9),inset 0 -8px 18px rgba(70,95,140,.12)}
-.tin::after{content:"";position:absolute;inset:13%;border-radius:50%;border:1.5px dashed rgba(90,115,160,.24)}
-.tin .tinlabel{position:relative;text-align:center;z-index:2;color:var(--ink)}
-.tin .tinlabel .lg{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:.9}
-.tin .tinlabel .sub{font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:5px}
-.tin .tinlabel .mg{font-weight:800;line-height:1;margin-top:9px}
-.tin .tinlabel .mg span{font-size:.5em;vertical-align:super;font-weight:700}
-.tin .tinlabel .fl{margin-top:7px;font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent-deep)}
+/* ============================================================ LIP CAN (detailed cylinder puck) */
+/* Sized by parent (width + aspect-ratio:1). All inner sizes use cqw so it scales anywhere. */
+.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(1100px) rotateX(14deg);transform-origin:center 46%}
+/* visible cylinder side (peeks below the lid) */
+.can-rim{position:absolute;left:1.5%;right:1.5%;top:9%;bottom:-8%;border-radius:50%;background:linear-gradient(90deg,#94a6c4 0%,#d6e0ef 15%,#ffffff 46%,#eef3fb 56%,#c8d4e8 80%,#92a4c2 100%);box-shadow:0 9cqw 16cqw -3cqw rgba(25,45,90,.3),0 34cqw 46cqw -16cqw rgba(20,42,88,.32)}
+/* coloured flavour band wrapping the visible rim */
+.can-rim::before{content:"";position:absolute;left:6%;right:6%;bottom:6.5%;height:11%;border-radius:50%;background:var(--band,linear-gradient(90deg,#1b54c0,#2f7df6 50%,#6fb0ff));opacity:.95;box-shadow:inset 0 1cqw 2cqw rgba(0,0,0,.12)}
+.can-rim::after{content:"";position:absolute;left:6%;right:6%;top:0;height:60%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent)}
+/* top face */
+.can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 37% 28%,#ffffff 0%,#f2f6fd 42%,#e3eaf6 70%,#cbd7ea 100%);box-shadow:inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -9cqw 20cqw rgba(60,90,140,.18),inset 0 0 0 .7cqw rgba(255,255,255,.55)}
+.can-lid .gloss{position:absolute;top:-16%;left:-8%;width:78%;height:62%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.92),transparent 66%);transform:rotate(-16deg)}
+.can-lid .ring{position:absolute;inset:7.5%;border-radius:50%;border:.5cqw dashed rgba(80,110,160,.32)}
+.can-lid .ring2{position:absolute;inset:12%;border-radius:50%;border:.4cqw solid rgba(80,110,160,.12)}
+.can-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);z-index:3}
+.can-label .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:.8;font-size:30cqw}
+.can-label .wm .d{color:var(--accent)}
+.can-label .cap{font-size:4.4cqw;letter-spacing:.32em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:1.4cqw}
+.can-label .dose{font-size:12.5cqw;font-weight:800;line-height:.88;margin-top:3.2cqw}
+.can-label .dose span{font-size:.4em;vertical-align:super;font-weight:700}
+.can-label .fl{margin-top:1.8cqw;font-size:4cqw;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--accent-deep)}
+/* supplement-facts micro block + qr (detail) */
+.can-facts{position:absolute;left:50%;bottom:14.5%;transform:translateX(-50%);width:26%;height:11%;border-radius:1.4cqw;background:rgba(255,255,255,.6);border:.4cqw solid rgba(80,110,160,.22);z-index:3;overflow:hidden}
+.can-facts::before{content:"";position:absolute;inset:1.6cqw;background:repeating-linear-gradient(rgba(80,110,160,.32) 0 .5cqw,transparent .5cqw 2.4cqw)}
+.can-qr{position:absolute;right:16%;top:21%;width:8.5%;aspect-ratio:1;border-radius:1cqw;background:conic-gradient(from 0deg,#16243d 25%,#fff 0 50%,#16243d 0 75%,#fff 0);background-size:50% 50%;border:.4cqw solid rgba(80,110,160,.25);z-index:3;opacity:.8}
 
 /* single floating pouch sachet */
 .pouch{position:absolute;border-radius:9px;background:linear-gradient(150deg,#ffffff 0%,#eef2f9 60%,#dde5f1 100%);box-shadow:0 14px 30px rgba(30,28,22,.16),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -3px 8px rgba(90,115,160,.14);border:1px solid rgba(0,0,0,.04);will-change:transform}
@@ -149,7 +163,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:calc(var(--nav-h) + 4vh);overflow:hidden}
 .hero-bg{position:absolute;top:0;left:0;right:0;height:132%;z-index:-2;background:radial-gradient(120% 60% at 50% -8%,#ffffff 0%,rgba(255,255,255,0) 55%),radial-gradient(80% 55% at 85% 26%,#dceafb 0%,rgba(220,234,251,0) 60%),var(--bg)}
 .hero-eyebrow{margin-bottom:20px}
-.hero h1{font-size:clamp(3.2rem,11vw,9.5rem);text-align:center;max-width:13ch}
+.hero h1{font-size:clamp(2.8rem,8.4vw,6.6rem);text-align:center;max-width:13ch}
 .hero h1 .amber{color:var(--accent)}
 .hero .lead{font-size:clamp(1.05rem,1.6vw,1.28rem);color:var(--ink-2);max-width:540px;text-align:center;margin:24px auto 30px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
@@ -157,33 +171,43 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .hero-trust .stars{color:var(--accent);letter-spacing:1px}
 .hero-trust b{color:var(--ink)}
 
-/* hero product scene */
-.hero-scene{position:relative;width:100%;flex:1;min-height:300px;margin-top:10px}
-.hero-stage{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(560px,86vw);aspect-ratio:1.4/1}
-.hero-tin{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:clamp(180px,26vw,260px);aspect-ratio:1;animation:drift 13s var(--ease-out) infinite;z-index:2}
-.hero-tin .tinlabel .lg{font-size:clamp(1.6rem,3.2vw,2.4rem)}
-.hero-tin .tinlabel .mg{font-size:clamp(1.6rem,3vw,2.2rem)}
-.hero-ground{bottom:8%;width:62%;height:34px;animation:ground-pulse 13s var(--ease-out) infinite}
+/* hero product scene — fills the lower viewport */
+.hero-scene{position:relative;width:100%;flex:1;min-height:min(54vh,520px);margin-top:6px}
+.hero-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1040px,96vw);height:100%}
+.hero-can{position:absolute;transform:translate(-50%,-50%)}
+.hc-main{left:43%;top:44%;width:clamp(230px,33vw,370px);z-index:3;animation:drift 14s var(--ease-out) infinite}
+.hc-side{left:66%;top:38%;width:clamp(165px,24vw,278px);z-index:1;animation:drift2 17s var(--ease-out) infinite}
+.hero-ground{bottom:6%;left:40%;width:34%;height:5%;animation:ground-pulse 14s var(--ease-out) infinite}
+.hero-ground-2{bottom:12%;left:64%;width:24%;height:4%;animation:ground-pulse 17s var(--ease-out) infinite;opacity:.7}
 @keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,calc(-50% - 16px)) rotate(2deg)}}
-/* hero tin drifts around a soft path */
+/* cans drift around a soft path */
 @keyframes drift{
-  0%  {transform:translate(-50%,-50%) translate(0,0)        rotate(-4deg)}
-  20% {transform:translate(-50%,-50%) translate(34px,-26px) rotate(3deg)}
-  40% {transform:translate(-50%,-50%) translate(20px,-44px) rotate(7deg)}
-  60% {transform:translate(-50%,-50%) translate(-26px,-30px) rotate(-2deg)}
-  80% {transform:translate(-50%,-50%) translate(-34px,-8px) rotate(-6deg)}
-  100%{transform:translate(-50%,-50%) translate(0,0)        rotate(-4deg)}
+  0%  {transform:translate(-50%,-50%) translate(0,0)         rotate(-5deg)}
+  20% {transform:translate(-50%,-50%) translate(30px,-30px)  rotate(2deg)}
+  40% {transform:translate(-50%,-50%) translate(16px,-50px)  rotate(6deg)}
+  60% {transform:translate(-50%,-50%) translate(-28px,-34px) rotate(-2deg)}
+  80% {transform:translate(-50%,-50%) translate(-32px,-10px) rotate(-7deg)}
+  100%{transform:translate(-50%,-50%) translate(0,0)         rotate(-5deg)}
 }
-@keyframes ground-pulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.9}50%{transform:translateX(-50%) scale(.82);opacity:.55}}
+@keyframes drift2{
+  0%  {transform:translate(-50%,-50%) translate(0,0)         rotate(7deg)}
+  25% {transform:translate(-50%,-50%) translate(-26px,-22px) rotate(-3deg)}
+  50% {transform:translate(-50%,-50%) translate(-14px,-46px) rotate(-8deg)}
+  75% {transform:translate(-50%,-50%) translate(28px,-26px)  rotate(4deg)}
+  100%{transform:translate(-50%,-50%) translate(0,0)         rotate(7deg)}
+}
+@keyframes ground-pulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.85}50%{transform:translateX(-50%) scale(.8);opacity:.5}}
 
-/* hero floating pouches — swirl around the scene */
-.hero-scene .pouch{width:clamp(34px,4.4vw,52px);aspect-ratio:.72}
-.hp1{left:14%;top:14%;animation:swirl1 9s var(--ease-out) infinite}
-.hp2{right:12%;top:8%;animation:swirl2 11s var(--ease-out) infinite}
-.hp3{left:6%;bottom:24%;animation:swirl3 8.5s var(--ease-out) infinite}
-.hp4{right:7%;bottom:30%;animation:swirl1 10s var(--ease-out) infinite .6s}
-.hp5{left:30%;bottom:8%;animation:swirl2 9.5s var(--ease-out) infinite .3s}
-.hp6{right:30%;top:2%;animation:swirl3 11.5s var(--ease-out) infinite .9s}
+/* hero floating pouches — swirl across the scene */
+.hero-scene .pouch{width:clamp(40px,5vw,62px);aspect-ratio:.72}
+.hp1{left:10%;top:16%;animation:swirl1 9s var(--ease-out) infinite}
+.hp2{right:9%;top:10%;animation:swirl2 11s var(--ease-out) infinite}
+.hp3{left:4%;bottom:22%;animation:swirl3 8.5s var(--ease-out) infinite}
+.hp4{right:5%;bottom:28%;animation:swirl1 10s var(--ease-out) infinite .6s}
+.hp5{left:24%;bottom:6%;animation:swirl2 9.5s var(--ease-out) infinite .3s}
+.hp6{right:24%;top:4%;animation:swirl3 11.5s var(--ease-out) infinite .9s}
+.hp7{left:50%;bottom:4%;animation:swirl1 10.5s var(--ease-out) infinite 1.1s}
+.hp8{right:40%;bottom:34%;animation:swirl2 12s var(--ease-out) infinite 1.4s}
 @keyframes swirl1{0%,100%{transform:translate(0,0) rotate(-14deg)}33%{transform:translate(26px,-30px) rotate(6deg)}66%{transform:translate(-14px,-48px) rotate(-8deg)}}
 @keyframes swirl2{0%,100%{transform:translate(0,0) rotate(16deg)}33%{transform:translate(-30px,-26px) rotate(-6deg)}66%{transform:translate(16px,-44px) rotate(10deg)}}
 @keyframes swirl3{0%,100%{transform:translate(0,0) rotate(8deg)}33%{transform:translate(22px,-40px) rotate(-10deg)}66%{transform:translate(-24px,-18px) rotate(12deg)}}
@@ -226,9 +250,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .evolved{background:var(--bg);overflow:hidden}
 .evolved .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center}
 .evolved-art{position:relative;aspect-ratio:1;max-width:520px;margin-inline:auto;width:100%}
-.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54%;aspect-ratio:1;animation:bob 7s var(--ease) infinite;z-index:2}
-.evolved-tin .tinlabel .lg{font-size:clamp(1.8rem,4vw,2.6rem)}
-.evolved-tin .tinlabel .mg{font-size:clamp(1.7rem,3.5vw,2.4rem)}
+.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56%;aspect-ratio:1;animation:bob 7s var(--ease) infinite;z-index:2}
 .evolved-art .ground{bottom:4%;width:54%;height:30px}
 .evolved-art .pouch{width:clamp(40px,9%,64px);aspect-ratio:.72}
 .orb-pouch{left:50%;top:50%}
@@ -272,8 +294,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard{scroll-snap-align:center;flex:0 0 min(330px,76vw);border-radius:var(--r-lg);background:var(--bg-soft);border:1px solid var(--line);overflow:hidden;transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
 .pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
 .pcard .top{aspect-ratio:1.25/1;display:grid;place-items:center;position:relative;overflow:hidden}
-.pcard .top .tin{width:58%;aspect-ratio:1}
-.pcard .top .tin .tinlabel .lg{font-size:1.6rem}.pcard .top .tin .tinlabel .mg{font-size:1.5rem}
+.pcard .top .can{width:62%}
 .pcard .bot{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .pcard .bot .fl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .pcard .bot .nm{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.3rem;margin-top:2px}
@@ -457,20 +478,50 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   <div class="hero-scene" aria-hidden="true">
     <div class="hero-stage">
       <div class="ground hero-ground"></div>
-      <div class="tin hero-tin">
-        <div class="tinlabel">
-          <div class="lg">lip</div>
-          <div class="sub">Clean Energy Pouch</div>
-          <div class="mg">100<span>mg</span></div>
-          <div class="fl">Arctic Mint</div>
+      <div class="ground hero-ground-2"></div>
+
+      <div class="hero-can hc-main">
+        <div class="can">
+          <div class="can-rim"></div>
+          <div class="can-lid">
+            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
+            <div class="can-qr"></div>
+            <div class="can-label">
+              <div class="wm">lip<span class="d">.</span></div>
+              <div class="cap">15 caffeine pouches</div>
+              <div class="dose">100<span>mg</span></div>
+              <div class="fl">Arctic Mint</div>
+            </div>
+            <div class="can-facts"></div>
+          </div>
         </div>
       </div>
+
+      <div class="hero-can hc-side">
+        <div class="can" style="--band:linear-gradient(90deg,#1f7a4d,#3aa76d 50%,#7fd1a3)">
+          <div class="can-rim"></div>
+          <div class="can-lid">
+            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
+            <div class="can-qr"></div>
+            <div class="can-label">
+              <div class="wm">lip<span class="d">.</span></div>
+              <div class="cap">15 caffeine pouches</div>
+              <div class="dose">100<span>mg</span></div>
+              <div class="fl" style="color:var(--mint)">Green Tea Zen</div>
+            </div>
+            <div class="can-facts"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="pouch hp1"></div>
       <div class="pouch hp2"></div>
       <div class="pouch hp3"></div>
       <div class="pouch hp4"></div>
       <div class="pouch hp5"></div>
       <div class="pouch hp6"></div>
+      <div class="pouch hp7"></div>
+      <div class="pouch hp8"></div>
     </div>
   </div>
 
@@ -491,8 +542,21 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   <div class="container">
     <div class="evolved-art" data-reveal aria-hidden="true">
       <div class="ground"></div>
-      <div class="tin evolved-tin">
-        <div class="tinlabel"><div class="lg">lip</div><div class="sub">15 Pouches</div><div class="mg">100<span>mg</span></div></div>
+      <div class="evolved-tin">
+        <div class="can">
+          <div class="can-rim"></div>
+          <div class="can-lid">
+            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
+            <div class="can-qr"></div>
+            <div class="can-label">
+              <div class="wm">lip<span class="d">.</span></div>
+              <div class="cap">15 caffeine pouches</div>
+              <div class="dose">100<span>mg</span></div>
+              <div class="fl">Arctic Mint</div>
+            </div>
+            <div class="can-facts"></div>
+          </div>
+        </div>
       </div>
       <div class="pouch orb-pouch" data-orbit="0"></div>
       <div class="pouch orb-pouch" data-orbit="1"></div>
@@ -542,12 +606,12 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   </div>
   <div class="h-scroll-wrap">
     <div class="h-track" id="hTrack" data-cursor>
-      <article class="pcard"><div class="top t-mint"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">100<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--mint)">Morning</div><div class="nm">Arctic Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard"><div class="top t-coffee"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">100<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:#7a5a32">Anytime</div><div class="nm">Espresso Noir</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard"><div class="top t-amber"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">150<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--accent-deep)">Pre-workout</div><div class="nm">Citrus Surge</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard"><div class="top t-mint"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">100<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--mint)">Focus</div><div class="nm">Green Tea Zen</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard"><div class="top t-berry"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">75<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:#9a4f86">Afternoon</div><div class="nm">Berry Reset</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard"><div class="top t-blue"><div class="tin"><div class="tinlabel"><div class="lg">lip</div><div class="mg">100<span>mg</span></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--blue)">Limited</div><div class="nm">Blue Razz</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-mint"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--mint)">Morning</div><div class="nm">Arctic Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-coffee"><div class="can" style="--band:linear-gradient(90deg,#4a2f1c,#8a5a32 55%,#b98a5c)"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:#7a5a32">Anytime</div><div class="nm">Espresso Noir</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-amber"><div class="can" style="--band:linear-gradient(90deg,#0f6e8c,#19a6c2 55%,#7fd6e6)"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">150<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--accent-deep)">Pre-workout</div><div class="nm">Citrus Surge</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-mint"><div class="can" style="--band:linear-gradient(90deg,#1f7a4d,#3aa76d 55%,#7fd1a3)"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--mint)">Focus</div><div class="nm">Green Tea Zen</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-berry"><div class="can" style="--band:linear-gradient(90deg,#6c3a86,#9a4f86 55%,#cf8cc0)"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">75<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:#9a4f86">Afternoon</div><div class="nm">Berry Reset</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard"><div class="top t-blue"><div class="can" style="--band:linear-gradient(90deg,#3a2fae,#6c4fd6 55%,#a99bf0)"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl" style="color:var(--blue)">Limited</div><div class="nm">Blue Razz</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
     </div>
     <div class="h-hint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>Drag or scroll to explore the full lineup</div>
   </div>
