@@ -14,6 +14,7 @@
 <style>
 /* ============================================================ TOKENS */
 :root{
+  --flavor:#2f7df6;       /* default can flavour (overridden per product) */
   --bg:#f3f7fe;           /* lightest cool blue-white */
   --bg-soft:#e9f0fb;
   --bg-mute:#dfe8f6;
@@ -128,7 +129,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 
 /* ============================================================ LIP CAN (3D cylinder puck) */
 /* Each can is driven by a single --flavor colour. Sized by parent (width + aspect-ratio:1). */
-.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(1000px) rotateX(20deg);transform-origin:center 50%;--flavor:#2f7df6}
+.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(1000px) rotateX(20deg);transform-origin:center 50%}
 /* visible cylinder side (a real, taller wall peeking below the lid) */
 .can-rim{position:absolute;left:1%;right:1%;top:7%;bottom:-14%;border-radius:50%;
   background:linear-gradient(90deg,#7d90b3 0%,#c6d3e8 13%,#ffffff 45%,#eef3fb 55%,#b6c5de 84%,#7a8db0 100%);
@@ -304,7 +305,16 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
 .pcard{--flavor:#2f7df6}
 .pcard .top{aspect-ratio:1.25/1;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--flavor) 9%,#fff),color-mix(in srgb,var(--flavor) 24%,#fff))}
-.pcard .top .can{width:60%;margin-top:-4%}
+.pcard .top .can{width:60%;margin-top:-4%;animation:canbob 5s var(--ease) infinite}
+.pcard:nth-child(2) .top .can{animation-duration:5.6s;animation-delay:-1.2s}
+.pcard:nth-child(3) .top .can{animation-duration:4.6s;animation-delay:-.6s}
+.pcard:nth-child(4) .top .can{animation-duration:5.2s;animation-delay:-2s}
+.pcard:nth-child(5) .top .can{animation-duration:6s;animation-delay:-.3s}
+.pcard:nth-child(6) .top .can{animation-duration:4.8s;animation-delay:-1.6s}
+.pcard:nth-child(7) .top .can{animation-duration:5.4s;animation-delay:-2.4s}
+.pcard:nth-child(8) .top .can{animation-duration:5s;animation-delay:-.9s}
+.pcard:nth-child(9) .top .can{animation-duration:5.8s;animation-delay:-1.9s}
+@keyframes canbob{0%,100%{transform:perspective(1000px) rotateX(20deg) translateY(0) rotateZ(-2.5deg)}50%{transform:perspective(1000px) rotateX(20deg) translateY(-9px) rotateZ(2.5deg)}}
 .pcard .bot{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .pcard .bot .fl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--flavor)}
 .pcard .bot .nm{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.3rem;margin-top:2px}
