@@ -130,41 +130,41 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 /* ============================================================ LIP CAN (3D cylinder puck) */
 /* Each can is driven by a single --flavor colour. Sized by parent (width + aspect-ratio:1). */
 .can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(1000px) rotateX(20deg);transform-origin:center 50%}
-/* visible cylinder side (a real, taller wall peeking below the lid) */
-.can-rim{position:absolute;left:1%;right:1%;top:7%;bottom:-14%;border-radius:50%;
-  background:linear-gradient(90deg,#7d90b3 0%,#c6d3e8 13%,#ffffff 45%,#eef3fb 55%,#b6c5de 84%,#7a8db0 100%);
-  box-shadow:0 11cqw 18cqw -4cqw rgba(20,40,85,.34),0 38cqw 50cqw -18cqw rgba(15,38,82,.36)}
-/* coloured flavour band wrapping the visible rim */
-.can-rim::before{content:"";position:absolute;left:5%;right:5%;bottom:7%;height:13%;border-radius:50%;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--flavor) 62%,#000) 0%,var(--flavor) 48%,color-mix(in srgb,var(--flavor) 55%,#fff) 100%);
-  box-shadow:inset 0 1cqw 2cqw rgba(0,0,0,.18)}
-.can-rim::after{content:"";position:absolute;left:5%;right:5%;top:1cqw;height:55%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.55),transparent)}
-/* top face — coloured border ring built from the flavour */
-.can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;
-  background:radial-gradient(circle at 37% 28%,#ffffff 0%,#f3f7fd 40%,#e4ebf6 70%,#cfdaec 100%);
-  box-shadow:inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),
-    inset 0 0 0 2.4cqw var(--flavor),inset 0 0 0 3cqw rgba(255,255,255,.85)}
+/* thin silver side wall — clean neutral rim (no coloured disc) */
+.can-rim{position:absolute;left:3%;right:3%;top:6%;bottom:-6%;border-radius:50%;z-index:1;
+  background:linear-gradient(90deg,#8fa0bd 0%,#dde6f1 14%,#ffffff 46%,#eef2f8 56%,#c8d3e6 84%,#8a9cba 100%);
+  box-shadow:0 8cqw 14cqw -5cqw rgba(20,40,85,.3),0 28cqw 38cqw -18cqw rgba(15,38,82,.3)}
+/* knurled metal texture, masked to the visible lower wall only */
+.can-rim::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(90deg,rgba(110,135,175,.26) 0 .45cqw,transparent .45cqw 1.9cqw);
+  -webkit-mask:linear-gradient(180deg,transparent 56%,#000 82%);mask:linear-gradient(180deg,transparent 56%,#000 82%)}
+.can-rim::after{content:"";position:absolute;left:6%;right:6%;top:2cqw;height:42%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.6),transparent)}
+/* top face — metallic sheen + embossed flavour border rings */
+.can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;
+  background:conic-gradient(from 215deg,rgba(255,255,255,0),rgba(120,150,200,.12) 18%,rgba(255,255,255,0) 38%,rgba(120,150,200,.12) 64%,rgba(255,255,255,0) 84%),radial-gradient(circle at 37% 28%,#ffffff 0%,#f3f7fd 40%,#e4ebf6 70%,#cfdaec 100%);
+  box-shadow:inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),inset 0 0 0 2.2cqw var(--flavor),inset 0 0 0 2.9cqw rgba(255,255,255,.9),inset 0 0 0 3.6cqw color-mix(in srgb,var(--flavor) 32%,#fff)}
 .can-lid .gloss{position:absolute;top:-18%;left:-10%;width:80%;height:64%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),transparent 64%);transform:rotate(-16deg);z-index:2}
-.can-lid .ring{position:absolute;inset:11%;border-radius:50%;border:.6cqw dashed var(--flavor);opacity:.55}
-.can-lid .ring2{position:absolute;inset:15.5%;border-radius:50%;border:.4cqw solid color-mix(in srgb,var(--flavor) 35%,transparent)}
-.can-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);z-index:3}
-.can-label .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:.8;font-size:30cqw;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
+.can-lid .ring{position:absolute;inset:11%;border-radius:50%;border:.6cqw dashed var(--flavor);opacity:.5}
+.can-lid .ring2{position:absolute;inset:16%;border-radius:50%;border:.4cqw solid color-mix(in srgb,var(--flavor) 30%,transparent);box-shadow:inset 0 0 0 .9cqw rgba(255,255,255,.5)}
+.can-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);z-index:3;padding:0 6%}
+.can-label .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:1;font-size:25cqw;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
 .can-label .wm .d{color:var(--flavor)}
-.can-label .cap{font-size:4.2cqw;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:1.4cqw}
-.can-label .dose{font-size:12.5cqw;font-weight:800;line-height:.88;margin-top:3cqw;color:var(--flavor)}
+.can-label .cap{font-size:3.9cqw;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:.8cqw}
+.can-label .dose{font-size:11.5cqw;font-weight:800;line-height:.9;margin-top:2.4cqw;color:var(--flavor)}
 .can-label .dose span{font-size:.4em;vertical-align:super;font-weight:700}
-.can-label .fl{margin-top:1.8cqw;font-size:4.2cqw;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
+.can-label .fl{margin-top:1.6cqw;font-size:3.9cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
 
 /* single floating pouch sachet — puffy 3D pillow */
-.pouch{position:absolute;border-radius:28% / 20%;
-  background:radial-gradient(120% 95% at 32% 22%,#ffffff 0%,#eef2fa 52%,#d2ddef 100%);
-  box-shadow:0 20px 38px -10px rgba(20,42,85,.36),0 5px 12px rgba(20,42,85,.18),
-    inset 0 2px 3px rgba(255,255,255,.95),inset 0 -7px 14px rgba(70,95,140,.24),inset 0 0 0 1px rgba(255,255,255,.55);
-  border:1px solid rgba(80,110,160,.14);will-change:transform}
-.pouch::before{content:"";position:absolute;top:9%;left:13%;width:48%;height:32%;border-radius:50%;
+.pouch{position:absolute;border-radius:30% / 22%;
+  background:linear-gradient(118deg,transparent 30%,rgba(255,255,255,.5) 45%,transparent 60%),radial-gradient(120% 95% at 30% 22%,#ffffff 0%,#eef2fa 52%,#d2ddef 100%);
+  box-shadow:0 20px 38px -10px rgba(20,42,85,.34),0 5px 12px rgba(20,42,85,.16),
+    inset 0 2px 3px rgba(255,255,255,.95),inset 0 -7px 14px rgba(70,95,140,.22),
+    inset 0 0 0 1px rgba(255,255,255,.6),inset 0 0 0 3px rgba(150,170,205,.14);
+  border:1px solid rgba(80,110,160,.16);will-change:transform}
+.pouch::before{content:"";position:absolute;top:9%;left:13%;width:48%;height:30%;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.92),transparent 70%);filter:blur(.6px)}
-.pouch::after{content:"";position:absolute;left:50%;top:15%;bottom:15%;width:1.5px;transform:translateX(-50%);
-  background:repeating-linear-gradient(transparent 0 4px,rgba(80,110,160,.22) 4px 5px)}
+.pouch::after{content:"";position:absolute;left:50%;top:14%;bottom:14%;width:1.5px;transform:translateX(-50%);
+  background:repeating-linear-gradient(transparent 0 4px,rgba(80,110,160,.24) 4px 5px)}
 
 /* ground shadow */
 .ground{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(20,40,85,.26),transparent 68%);filter:blur(9px)}
