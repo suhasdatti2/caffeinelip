@@ -127,32 +127,33 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .mobile-menu a:hover{color:var(--accent-deep)}
 .mobile-menu .btn{margin-top:30px;align-self:flex-start;font-family:'Manrope';text-transform:none;font-size:1rem}
 
-/* ============================================================ LIP CAN (3D cylinder puck) */
-/* Each can is driven by a single --flavor colour. Sized by parent (width + aspect-ratio:1). */
-.can{position:relative;width:100%;aspect-ratio:1;container-type:inline-size;transform:perspective(900px) rotateX(26deg);transform-origin:center 50%}
-/* tall silver cylinder wall — thick & 3D, neutral (no coloured disc, no drop-shadow ellipse) */
-.can-rim{position:absolute;left:3%;right:3%;top:5%;bottom:-22%;border-radius:50%;z-index:1;
-  background:linear-gradient(180deg,transparent 34%,rgba(35,55,95,.14) 64%,rgba(28,46,84,.36) 92%,rgba(20,38,76,.2) 100%),linear-gradient(90deg,#7c90b1 0%,#d4dfee 14%,#ffffff 46%,#edf1f8 56%,#bdcae1 84%,#768bad 100%)}
-/* knurled metal texture, masked to the visible lower wall only */
-.can-rim::before{content:"";position:absolute;inset:0;border-radius:50%;
-  background:repeating-linear-gradient(90deg,rgba(110,135,175,.28) 0 .45cqw,transparent .45cqw 1.9cqw);
-  -webkit-mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent);mask:linear-gradient(180deg,transparent 48%,#000 70%,#000 96%,transparent)}
-/* bright bottom lip of the can for crisp 3D edge */
-.can-rim::after{content:"";position:absolute;left:9%;right:9%;bottom:1.5cqw;height:9%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
-/* top face — metallic sheen + embossed flavour border rings */
-.can-lid{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;
-  background:conic-gradient(from 215deg,rgba(255,255,255,0),rgba(120,150,200,.12) 18%,rgba(255,255,255,0) 38%,rgba(120,150,200,.12) 64%,rgba(255,255,255,0) 84%),radial-gradient(circle at 37% 28%,#ffffff 0%,#f3f7fd 40%,#e4ebf6 70%,#cfdaec 100%);
-  box-shadow:0 2.5cqw 4cqw -1cqw rgba(18,38,82,.34),inset 0 3cqw 8cqw rgba(255,255,255,.95),inset 0 -10cqw 22cqw rgba(55,85,135,.2),inset 0 0 0 2.2cqw var(--flavor),inset 0 0 0 2.9cqw rgba(255,255,255,.9),inset 0 0 0 3.6cqw color-mix(in srgb,var(--flavor) 32%,#fff)}
-.can-lid .gloss{position:absolute;top:-18%;left:-10%;width:80%;height:64%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),transparent 64%);transform:rotate(-16deg);z-index:2}
-.can-lid .ring{position:absolute;inset:11%;border-radius:50%;border:.6cqw dashed var(--flavor);opacity:.5}
-.can-lid .ring2{position:absolute;inset:16%;border-radius:50%;border:.4cqw solid color-mix(in srgb,var(--flavor) 30%,transparent);box-shadow:inset 0 0 0 .9cqw rgba(255,255,255,.5)}
-.can-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);z-index:3;padding:0 6%}
-.can-label .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:1;font-size:25cqw;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
-.can-label .wm .d{color:var(--flavor)}
-.can-label .cap{font-size:3.9cqw;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink-3);margin-top:.8cqw}
-.can-label .dose{font-size:11.5cqw;font-weight:800;line-height:.9;margin-top:2.4cqw;color:var(--flavor)}
-.can-label .dose span{font-size:.4em;vertical-align:super;font-weight:700}
-.can-label .fl{margin-top:1.6cqw;font-size:3.9cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
+/* ============================================================ LIP 3D BOX (real preserve-3d cuboid) */
+/* Size via font-size on the .box3d wrapper (every dimension is in em). --flavor drives colour. */
+.box3d{position:relative;width:20em;height:25em;transform-style:preserve-3d;transform:perspective(55em) rotateX(-15deg) rotateY(-32deg);--flavor:#2f7df6}
+.bx-face{position:absolute;top:50%;left:50%;border-radius:.4em;overflow:hidden;background:#eef2f8}
+.bx-front,.bx-back{width:20em;height:25em;margin:-12.5em 0 0 -10em}
+.bx-right,.bx-left{width:10em;height:25em;margin:-12.5em 0 0 -5em}
+.bx-top,.bx-bottom{width:20em;height:10em;margin:-5em 0 0 -10em}
+.bx-front{transform:translateZ(5em);background:linear-gradient(157deg,#ffffff 0%,#eef3fb 62%,#dbe4f1 100%);box-shadow:inset 0 0 0 .14em rgba(255,255,255,.7),inset 0 -3.4em 5em rgba(60,90,140,.12)}
+.bx-back{transform:rotateY(180deg) translateZ(5em);background:linear-gradient(157deg,#e6ecf6,#cdd8e7)}
+.bx-right{transform:rotateY(90deg) translateZ(10em);background:linear-gradient(90deg,#9caac1,#c0cbdc)}
+.bx-left{transform:rotateY(-90deg) translateZ(10em);background:linear-gradient(90deg,#7b8ba6,#97a6be)}
+.bx-top{transform:rotateX(90deg) translateZ(12.5em);background:linear-gradient(135deg,color-mix(in srgb,var(--flavor) 80%,#fff),var(--flavor) 50%,color-mix(in srgb,var(--flavor) 60%,#000))}
+.bx-bottom{transform:rotateX(-90deg) translateZ(12.5em);background:linear-gradient(135deg,#54637c,#37435a)}
+/* front gloss + flavour foot band */
+.bx-front::before{content:"";position:absolute;top:-16%;left:-12%;width:72%;height:84%;background:linear-gradient(118deg,rgba(255,255,255,.6),transparent 56%);transform:rotate(8deg)}
+.bx-front::after{content:"";position:absolute;left:0;right:0;bottom:0;height:13%;background:linear-gradient(180deg,color-mix(in srgb,var(--flavor) 72%,#fff),var(--flavor));box-shadow:inset 0 .4em .7em rgba(0,0,0,.14)}
+/* front label */
+.bx-lbl{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.4em 2.6em}
+.bx-lbl .wm{font-family:'Anton',sans-serif;text-transform:lowercase;line-height:1;font-size:6em;color:color-mix(in srgb,var(--flavor) 55%,#0e2148)}
+.bx-lbl .wm .d{color:var(--flavor)}
+.bx-lbl .cap{font-size:.95em;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#8294b4;margin-top:.6em}
+.bx-lbl .dose{font-size:2.8em;font-weight:800;line-height:.9;margin-top:.45em;color:var(--flavor)}
+.bx-lbl .dose span{font-size:.4em;vertical-align:super;font-weight:700}
+.bx-lbl .fl{margin-top:.5em;font-size:.95em;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--flavor)}
+/* rotations */
+@keyframes boxspin{from{transform:perspective(55em) rotateX(-15deg) rotateY(-32deg)}to{transform:perspective(55em) rotateX(-15deg) rotateY(328deg)}}
+@keyframes boxrock{0%,100%{transform:perspective(55em) rotateX(-15deg) rotateY(-38deg)}50%{transform:perspective(55em) rotateX(-11deg) rotateY(-2deg)}}
 
 /* single floating pouch sachet — puffy 3D pillow */
 .pouch{position:absolute;border-radius:30% / 22%;
@@ -185,8 +186,10 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .hero-scene{position:relative;width:100%;flex:1;min-height:min(54vh,520px);margin-top:6px}
 .hero-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1040px,96vw);height:100%}
 .hero-can{position:absolute;transform:translate(-50%,-50%)}
-.hc-main{left:43%;top:44%;width:clamp(230px,33vw,370px);z-index:3;animation:drift 14s var(--ease-out) infinite}
-.hc-side{left:66%;top:38%;width:clamp(165px,24vw,278px);z-index:1;animation:drift2 17s var(--ease-out) infinite}
+.hc-main{left:42%;top:46%;font-size:clamp(10px,1.9vw,15px);z-index:3;animation:drift 14s var(--ease-out) infinite}
+.hc-side{left:68%;top:40%;font-size:clamp(8px,1.4vw,12px);z-index:1;animation:drift2 17s var(--ease-out) infinite}
+.hc-main .box3d{animation:boxspin 19s linear infinite}
+.hc-side .box3d{animation:boxspin 24s linear infinite reverse}
 .hero-ground{bottom:6%;left:40%;width:34%;height:5%;animation:ground-pulse 14s var(--ease-out) infinite}
 .hero-ground-2{bottom:12%;left:64%;width:24%;height:4%;animation:ground-pulse 17s var(--ease-out) infinite;opacity:.7}
 @keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,calc(-50% - 16px)) rotate(2deg)}}
@@ -260,7 +263,8 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .evolved{background:var(--bg);overflow:hidden}
 .evolved .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center}
 .evolved-art{position:relative;aspect-ratio:1;max-width:520px;margin-inline:auto;width:100%}
-.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56%;aspect-ratio:1;animation:bob 7s var(--ease) infinite;z-index:2}
+.evolved-tin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(9px,2.3vw,16px);animation:bob 7s var(--ease) infinite;z-index:2}
+.evolved-tin .box3d{animation:boxspin 20s linear infinite}
 .evolved-art .ground{bottom:4%;width:54%;height:30px}
 .evolved-art .pouch{width:clamp(40px,9%,64px);aspect-ratio:.72}
 .orb-pouch{left:50%;top:50%}
@@ -277,8 +281,12 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .story{background:var(--bg-soft);overflow:hidden}
 .story .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,84px);align-items:center}
 .story-visual{position:relative}
-.story-visual .frame{border-radius:var(--r-xl);aspect-ratio:4/5;overflow:hidden;background:radial-gradient(130% 90% at 30% 12%,#fff6e6,#f4dfb6 42%,#dcab5d 82%,#b07e34 100%);box-shadow:var(--shadow-lg);display:grid;place-items:center}
-.story-visual .frame .glyph{font-family:'Anton',sans-serif;text-transform:lowercase;font-size:9rem;color:rgba(60,40,10,.2)}
+.story-stage{position:relative;border-radius:var(--r-xl);aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center;font-size:clamp(10px,2vw,15px);background:radial-gradient(125% 95% at 30% 10%,#fbfdff,#e7eff9 46%,#d3e0f1 78%,#c2d3ea 100%);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7)}
+.story-stage::before{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 68%);filter:blur(20px);top:8%}
+.story-stage .box3d{animation:boxspin 16s linear infinite;z-index:2}
+.story-stage .pouch{width:clamp(34px,4.4vw,52px);aspect-ratio:.72;z-index:3}
+.story-stage .sp1{top:12%;left:10%;animation:swirl1 8s var(--ease-out) infinite}
+.story-stage .sp2{bottom:14%;right:9%;animation:swirl2 9s var(--ease-out) infinite .5s}
 .story-tag{position:absolute;bottom:22px;left:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;padding:15px 19px;box-shadow:var(--shadow-md);max-width:230px}
 .story-tag .t{font-weight:700;font-size:.92rem}
 .story-tag .s{color:var(--ink-2);font-size:.8rem;margin-top:3px}
@@ -305,16 +313,16 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
 .pcard{--flavor:#2f7df6}
 .pcard .top{aspect-ratio:1.25/1;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--flavor) 9%,#fff),color-mix(in srgb,var(--flavor) 24%,#fff))}
-.pcard .top .can{width:57%;margin-top:-9%;animation:canbob 5s var(--ease) infinite}
-.pcard:nth-child(2) .top .can{animation-duration:5.6s;animation-delay:-1.2s}
-.pcard:nth-child(3) .top .can{animation-duration:4.6s;animation-delay:-.6s}
-.pcard:nth-child(4) .top .can{animation-duration:5.2s;animation-delay:-2s}
-.pcard:nth-child(5) .top .can{animation-duration:6s;animation-delay:-.3s}
-.pcard:nth-child(6) .top .can{animation-duration:4.8s;animation-delay:-1.6s}
-.pcard:nth-child(7) .top .can{animation-duration:5.4s;animation-delay:-2.4s}
-.pcard:nth-child(8) .top .can{animation-duration:5s;animation-delay:-.9s}
-.pcard:nth-child(9) .top .can{animation-duration:5.8s;animation-delay:-1.9s}
-@keyframes canbob{0%,100%{transform:perspective(1000px) rotateX(20deg) translateY(0) rotateZ(-2.5deg)}50%{transform:perspective(1000px) rotateX(20deg) translateY(-9px) rotateZ(2.5deg)}}
+.pcard{container-type:inline-size}
+.pcard .top .box3d{font-size:clamp(5.5px,2.2cqw,8.5px);animation:boxrock 6s ease-in-out infinite}
+.pcard:nth-child(2) .top .box3d{animation-duration:6.6s;animation-delay:-1.4s}
+.pcard:nth-child(3) .top .box3d{animation-duration:5.6s;animation-delay:-.7s}
+.pcard:nth-child(4) .top .box3d{animation-duration:6.2s;animation-delay:-2.4s}
+.pcard:nth-child(5) .top .box3d{animation-duration:7s;animation-delay:-.4s}
+.pcard:nth-child(6) .top .box3d{animation-duration:5.8s;animation-delay:-1.9s}
+.pcard:nth-child(7) .top .box3d{animation-duration:6.4s;animation-delay:-2.8s}
+.pcard:nth-child(8) .top .box3d{animation-duration:6s;animation-delay:-1.1s}
+.pcard:nth-child(9) .top .box3d{animation-duration:6.8s;animation-delay:-2.2s}
 .pcard .bot{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .pcard .bot .fl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--flavor)}
 .pcard .bot .nm{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.3rem;margin-top:2px}
@@ -436,7 +444,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .flv-counter{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:rgba(255,255,255,.7)}
 .flv-counter b{color:var(--flavor);transition:color .8s}
 .flv-watermark{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(4rem,19vw,18rem);line-height:.8;color:var(--flavor);opacity:.13;white-space:nowrap;pointer-events:none;text-align:center;transition:color .8s}
-.flv-can-wrap{width:min(440px,74vw);aspect-ratio:1;z-index:2;filter:drop-shadow(0 30px 60px rgba(0,0,0,.5))}
+.flv-can-wrap{font-size:clamp(12px,2.6vw,21px);z-index:2;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
 .flv-meta{position:absolute;bottom:max(70px,11vh);left:0;right:0;padding:0 28px;text-align:center;z-index:4;color:#fff}
 .flv-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.4rem);line-height:.9;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.4)}
 .flv-name .dot{color:var(--flavor);transition:color .8s}
@@ -525,35 +533,8 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
       <div class="ground hero-ground"></div>
       <div class="ground hero-ground-2"></div>
 
-      <div class="hero-can hc-main">
-        <div class="can" style="--flavor:#20bcd6">
-          <div class="can-rim"></div>
-          <div class="can-lid">
-            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
-            <div class="can-label">
-              <div class="wm">lip<span class="d">.</span></div>
-              <div class="cap">15 caffeine pouches</div>
-              <div class="dose">100<span>mg</span></div>
-              <div class="fl">Arctic Mint</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-can hc-side">
-        <div class="can" style="--flavor:#3aa76d">
-          <div class="can-rim"></div>
-          <div class="can-lid">
-            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
-            <div class="can-label">
-              <div class="wm">lip<span class="d">.</span></div>
-              <div class="cap">15 caffeine pouches</div>
-              <div class="dose">100<span>mg</span></div>
-              <div class="fl">Green Tea Zen</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="hero-can hc-main"><div class="box3d" style="--flavor:#20bcd6" data-name="Arctic Mint" data-dose="100"></div></div>
+      <div class="hero-can hc-side"><div class="box3d" style="--flavor:#3aa76d" data-name="Green Tea Zen" data-dose="100"></div></div>
 
       <div class="pouch hp1"></div>
       <div class="pouch hp2"></div>
@@ -583,20 +564,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   <div class="container">
     <div class="evolved-art" data-reveal aria-hidden="true">
       <div class="ground"></div>
-      <div class="evolved-tin">
-        <div class="can" style="--flavor:#20bcd6">
-          <div class="can-rim"></div>
-          <div class="can-lid">
-            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
-            <div class="can-label">
-              <div class="wm">lip<span class="d">.</span></div>
-              <div class="cap">15 caffeine pouches</div>
-              <div class="dose">100<span>mg</span></div>
-              <div class="fl">Arctic Mint</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="evolved-tin"><div class="box3d" style="--flavor:#20bcd6" data-name="Arctic Mint" data-dose="100"></div></div>
       <div class="pouch orb-pouch" data-orbit="0"></div>
       <div class="pouch orb-pouch" data-orbit="1"></div>
       <div class="pouch orb-pouch" data-orbit="2"></div>
@@ -645,15 +613,15 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   </div>
   <div class="h-scroll-wrap">
     <div class="h-track" id="hTrack" data-cursor>
-      <article class="pcard" style="--flavor:#20bcd6"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Morning</div><div class="nm">Arctic Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#8a5a32"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Anytime</div><div class="nm">Espresso Noir</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#f0902a"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">150<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Pre-workout</div><div class="nm">Citrus Surge</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#3aa76d"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Focus</div><div class="nm">Green Tea Zen</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#c43f88"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">75<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Afternoon</div><div class="nm">Berry Reset</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#5b4fe0"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Limited</div><div class="nm">Blue Razz</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#e23b48"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">120<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Bold</div><div class="nm">Cherry Cola</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#f2b21f"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Tropical</div><div class="nm">Mango Tango</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
-      <article class="pcard" style="--flavor:#2fc08a"><div class="top"><div class="can"><div class="can-rim"></div><div class="can-lid"><div class="gloss"></div><div class="ring"></div><div class="ring2"></div><div class="can-label"><div class="wm">lip<span class="d">.</span></div><div class="dose">100<span>mg</span></div></div></div></div></div><div class="bot"><div><div class="fl">Crisp</div><div class="nm">Cool Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#20bcd6"><div class="top"><div class="box3d" data-name="Arctic Mint" data-dose="100"></div></div><div class="bot"><div><div class="fl">Morning</div><div class="nm">Arctic Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#8a5a32"><div class="top"><div class="box3d" data-name="Espresso Noir" data-dose="100"></div></div><div class="bot"><div><div class="fl">Anytime</div><div class="nm">Espresso Noir</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#f0902a"><div class="top"><div class="box3d" data-name="Citrus Surge" data-dose="150"></div></div><div class="bot"><div><div class="fl">Pre-workout</div><div class="nm">Citrus Surge</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#3aa76d"><div class="top"><div class="box3d" data-name="Green Tea Zen" data-dose="100"></div></div><div class="bot"><div><div class="fl">Focus</div><div class="nm">Green Tea Zen</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#c43f88"><div class="top"><div class="box3d" data-name="Berry Reset" data-dose="75"></div></div><div class="bot"><div><div class="fl">Afternoon</div><div class="nm">Berry Reset</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#5b4fe0"><div class="top"><div class="box3d" data-name="Blue Razz" data-dose="100"></div></div><div class="bot"><div><div class="fl">Limited</div><div class="nm">Blue Razz</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#e23b48"><div class="top"><div class="box3d" data-name="Cherry Cola" data-dose="120"></div></div><div class="bot"><div><div class="fl">Bold</div><div class="nm">Cherry Cola</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#f2b21f"><div class="top"><div class="box3d" data-name="Mango Tango" data-dose="100"></div></div><div class="bot"><div><div class="fl">Tropical</div><div class="nm">Mango Tango</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      <article class="pcard" style="--flavor:#2fc08a"><div class="top"><div class="box3d" data-name="Cool Mint" data-dose="100"></div></div><div class="bot"><div><div class="fl">Crisp</div><div class="nm">Cool Mint</div></div><a href="#pricing" class="shop" data-cursor>Shop<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
     </div>
     <div class="h-hint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>Drag or scroll to explore the full lineup</div>
   </div>
@@ -675,18 +643,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 
     <div class="flv-inner">
       <div class="flv-can-wrap flv-fade" id="flvCanWrap">
-        <div class="can" id="flvCan" style="--flavor:#19c6dc">
-          <div class="can-rim"></div>
-          <div class="can-lid">
-            <div class="gloss"></div><div class="ring"></div><div class="ring2"></div>
-            <div class="can-label">
-              <div class="wm">lip<span class="d">.</span></div>
-              <div class="cap">15 caffeine pouches</div>
-              <div class="dose" id="flvCanDose">100<span>mg</span></div>
-              <div class="fl" id="flvCanName">Arctic Mint</div>
-            </div>
-          </div>
-        </div>
+        <div class="box3d" id="flvCan" style="--flavor:#19c6dc" data-name="Arctic Mint" data-dose="100"></div>
       </div>
     </div>
 
@@ -707,7 +664,11 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 <section class="section story" id="story">
   <div class="container">
     <div class="story-visual" data-reveal>
-      <div class="frame" data-parallax="0.04"><span class="glyph">lip.</span></div>
+      <div class="story-stage">
+        <div class="box3d" style="--flavor:#2f7df6" data-name="Arctic Mint" data-dose="100"></div>
+        <div class="pouch sp1"></div>
+        <div class="pouch sp2"></div>
+      </div>
       <div class="story-tag"><div class="t">Founded by chemists &amp; runners</div><div class="s">Built in a lab. Tested on the trail.</div></div>
     </div>
     <div class="story-copy">
@@ -920,6 +881,24 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
       flvCan=document.getElementById('flvCan'),flvCanWrap=document.getElementById('flvCanWrap'),flvWm=document.getElementById('flvWm'),
       flvMeta=document.getElementById('flvMeta'),flvDotsEls=flvSticky?[].slice.call(flvSticky.querySelectorAll('.flv-dots i')):[],
       flvCur=-1;
+
+  /* ---- build the 6 faces of every 3D lip box ---- */
+  function buildBox(el){
+    var name=el.getAttribute('data-name')||'';
+    var dose=el.getAttribute('data-dose')||'100';
+    var cap=el.getAttribute('data-cap')||'15 caffeine pouches';
+    var compact=el.hasAttribute('data-compact')||el.closest('.pcard');
+    var lbl='<div class="bx-lbl"><div class="wm">lip<span class="d">.</span></div>'
+      +(compact?'':'<div class="cap">'+cap+'</div>')
+      +'<div class="dose">'+dose+'<span>mg</span></div>'
+      +(name?'<div class="fl">'+name+'</div>':'')
+      +'</div>';
+    el.innerHTML='<div class="bx-face bx-back"></div><div class="bx-face bx-right"></div><div class="bx-face bx-left"></div>'
+      +'<div class="bx-face bx-bottom"></div><div class="bx-face bx-top"></div>'
+      +'<div class="bx-face bx-front">'+lbl+'</div>';
+  }
+  [].slice.call(document.querySelectorAll('.box3d')).forEach(buildBox);
+
   function setFlavor(i){
     if(i===flvCur) return; flvCur=i; var f=FLAV[i];
     flvSticky.style.setProperty('--flavor',f.c);
@@ -930,8 +909,8 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
     document.getElementById('flvName').textContent=f.n;
     document.getElementById('flvNote').textContent=f.note;
     document.getElementById('flvDose').textContent=f.dose+'mg caffeine';
-    document.getElementById('flvCanName').textContent=f.n;
-    document.getElementById('flvCanDose').innerHTML=f.dose+'<span>mg</span>';
+    var lblFl=flvCan.querySelector('.bx-lbl .fl'); if(lblFl) lblFl.textContent=f.n;
+    var lblDose=flvCan.querySelector('.bx-lbl .dose'); if(lblDose) lblDose.innerHTML=f.dose+'<span>mg</span>';
     document.getElementById('flvWm').textContent=f.wm;
     for(var d=0;d<flvDotsEls.length;d++) flvDotsEls[d].classList.toggle('on',d===i);
   }
@@ -943,12 +922,13 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
     var seg=p*FLAV.length, idx=Math.min(FLAV.length-1,Math.floor(seg)), lp=seg-idx;
     setFlavor(idx);
     var t=Math.sin(Math.min(1,Math.max(0,lp))*Math.PI);          /* 0 at edges (galaxy gap), 1 mid-flavour */
-    var spin=p*1080;                                              /* keeps rotating the more you scroll */
-    var scale=0.74+0.26*t;
+    var spin=-32+p*900;                                          /* box keeps turning the more you scroll */
+    var scale=0.72+0.28*t;
     var op=Math.min(1,t*1.7);
     if(!reduce){
-      flvCan.style.transform='perspective(900px) rotateX(24deg) rotateZ('+spin+'deg) scale('+scale+')';
+      flvCan.style.transform='perspective(55em) rotateX(-15deg) rotateY('+spin+'deg)';
     }
+    flvCanWrap.style.transform='scale('+scale+')';
     flvCanWrap.style.opacity=op; flvWm.style.opacity=(0.04+0.12*t); flvMeta.style.opacity=op;
   }
 
