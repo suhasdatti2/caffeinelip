@@ -130,7 +130,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 /* ============================================================ LIP CAN — real preserve-3d cylinder tin */
 /* Size via font-size on .can (all dims in em). --flavor drives colour. Faces built in JS. */
 .can{position:relative;display:grid;place-items:center;perspective:58em;--flavor:#2f7df6}
-.cyl{position:relative;width:20em;height:20em;transform-style:preserve-3d;transform:rotateX(-58deg);will-change:transform}
+.cyl{position:relative;width:20em;height:20em;transform-style:preserve-3d;transform:rotateX(58deg);will-change:transform}
 .cyl>div{position:absolute;left:50%;top:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 /* round top lid + bottom (caps of the cylinder) */
 .cyl-top,.cyl-bottom{width:20em;height:20em;margin:-10em 0 0 -10em;border-radius:50%;overflow:hidden}
@@ -426,9 +426,9 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .flavors6{position:relative;height:640vh;background:#05070f}
 .flv-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;--flavor:#19c6dc;--neb1:#0a3a4a;--neb2:#16708a}
 .flv-galaxy{position:absolute;inset:0;z-index:0;overflow:hidden;background:radial-gradient(125% 95% at 50% 46%,var(--neb1) 0%,#070b18 56%,#04060d 100%);transition:background 1s var(--ease)}
-.flv-galaxy .neb{position:absolute;inset:-25%;background:radial-gradient(40% 40% at 30% 34%,var(--neb2),transparent 60%),radial-gradient(46% 46% at 72% 66%,var(--neb1),transparent 62%);filter:blur(36px);opacity:.85;animation:nebSpin 70s linear infinite;transition:background 1s var(--ease)}
+.flv-galaxy .neb{position:absolute;inset:-25%;background:radial-gradient(40% 40% at 30% 34%,var(--neb2),transparent 60%),radial-gradient(46% 46% at 72% 66%,var(--neb1),transparent 62%);filter:blur(36px);opacity:.85;animation:nebSpin 70s linear infinite}
 /* bursts of flavour colour */
-.flv-galaxy .burst{position:absolute;border-radius:50%;filter:blur(46px);mix-blend-mode:screen;transition:background 1s var(--ease)}
+.flv-galaxy .burst{position:absolute;border-radius:50%;filter:blur(46px);mix-blend-mode:screen}
 .flv-galaxy .b1{width:46vmax;height:46vmax;top:-12%;left:-8%;background:radial-gradient(circle,color-mix(in srgb,var(--flavor) 85%,transparent),transparent 66%);animation:burstPulse 7s ease-in-out infinite}
 .flv-galaxy .b2{width:40vmax;height:40vmax;bottom:-14%;right:-6%;background:radial-gradient(circle,var(--neb2),transparent 66%);animation:burstPulse 9s ease-in-out infinite 1.2s}
 .flv-galaxy .b3{width:30vmax;height:30vmax;top:30%;right:24%;background:radial-gradient(circle,color-mix(in srgb,var(--flavor) 70%,#fff),transparent 64%);animation:burstPulse 11s ease-in-out infinite .5s}
@@ -452,14 +452,14 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .flv-counter{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:rgba(255,255,255,.7)}
 .flv-counter b{color:var(--flavor);transition:color .8s}
 .flv-watermark{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(4rem,19vw,18rem);line-height:.8;color:var(--flavor);opacity:.13;white-space:nowrap;pointer-events:none;text-align:center;transition:color .8s}
-.flv-can-wrap{font-size:clamp(12px,2.6vw,20px);z-index:2;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
+.flv-can-wrap{font-size:clamp(12px,2.6vw,20px);z-index:2;will-change:opacity,transform;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
 .flv-meta{position:absolute;bottom:max(70px,11vh);left:0;right:0;padding:0 28px;text-align:center;z-index:4;color:#fff}
 .flv-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.4rem);line-height:.9;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.4)}
 .flv-name .dot{color:var(--flavor);transition:color .8s}
 .flv-note{color:rgba(255,255,255,.78);font-size:clamp(1rem,1.5vw,1.18rem);max-width:480px;margin:14px auto 0}
 .flv-dose{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 16px;border-radius:100px;font-size:.82rem;font-weight:700;letter-spacing:.05em;color:#fff;background:color-mix(in srgb,var(--flavor) 30%,transparent);border:1px solid color-mix(in srgb,var(--flavor) 55%,transparent);transition:background .8s,border-color .8s}
 .flv-morph{display:contents}
-.flv-fade{transition:opacity .15s linear}
+.flv-fade{will-change:opacity,transform}
 .flv-dots{position:absolute;right:max(20px,2vw);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:4}
 .flv-dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);transition:background .4s,transform .4s;display:block}
 .flv-dots i.on{background:var(--flavor);transform:scale(1.5)}
@@ -956,7 +956,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
     var op=Math.min(1,t*1.7);
     var cyl=flvCan&&flvCan.firstElementChild;
     if(!reduce&&cyl){
-      cyl.style.transform='rotateX(-58deg) rotateY('+spin+'deg)';
+      cyl.style.transform='rotateX(58deg) rotateY('+spin+'deg)';
     }
     flvCanWrap.style.transform='scale('+scale+')';
     flvCanWrap.style.opacity=op; flvWm.style.opacity=(0.04+0.12*t); flvMeta.style.opacity=op;
