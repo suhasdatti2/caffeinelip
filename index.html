@@ -23,13 +23,13 @@
   --line:#e9e7e1;
   --line-2:#dcd9d1;
 
-  --accent:#d98a2b;       /* warm caffeine amber */
-  --accent-2:#e9a544;
-  --accent-deep:#a9651a;
-  --cream:#fdf6ea;
+  --accent:#2f7df6;       /* cool electric blue */
+  --accent-2:#5aa0ff;
+  --accent-deep:#1b54c0;
+  --cream:#eef4fe;
   --mint:#3aa76d;
-  --blue:#4f7bdc;
-  --grad-accent:linear-gradient(135deg,#f0b65a,#d98a2b 55%,#a9651a);
+  --blue:#6c4fd6;
+  --grad-accent:linear-gradient(135deg,#6fb0ff,#2f7df6 55%,#1b54c0);
 
   --shadow-sm:0 1px 2px rgba(15,15,15,.05),0 2px 8px rgba(15,15,15,.04);
   --shadow-md:0 10px 34px rgba(20,20,20,.09),0 2px 6px rgba(20,20,20,.05);
@@ -80,15 +80,15 @@ ul{list-style:none}
 .btn-dark:hover svg{transform:translateX(4px)}
 .btn-ghost{background:rgba(10,10,10,.035);color:var(--ink);border:1px solid var(--line)}
 .btn-ghost:hover{transform:translateY(-3px);background:#fff;border-color:var(--line-2);box-shadow:var(--shadow-md)}
-.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 14px 34px rgba(217,138,43,.32)}
-.btn-accent:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(217,138,43,.42)}
+.btn-accent{background:var(--grad-accent);color:#fff;box-shadow:0 14px 34px rgba(47,125,246,.32)}
+.btn-accent:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(47,125,246,.42)}
 .btn-light{background:#fff;color:var(--ink);box-shadow:var(--shadow-md)}
 .btn-light:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .arrow{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.16)}
 .btn-ghost .arrow,.btn-light .arrow{background:var(--ink);color:#fff}
 
 /* ============================================================ PROGRESS + CURSOR */
-#progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--grad-accent);z-index:1000;box-shadow:0 0 12px rgba(217,138,43,.55)}
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--grad-accent);z-index:1000;box-shadow:0 0 12px rgba(47,125,246,.55)}
 .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:999;transform:translate(-50%,-50%);mix-blend-mode:difference}
 .cursor-dot{width:7px;height:7px;background:#fff;transition:width .25s,height .25s}
 .cursor-ring{width:42px;height:42px;border:1.5px solid rgba(255,255,255,.7);transition:width .3s var(--ease-out),height .3s var(--ease-out),background .3s,border-color .3s}
@@ -159,23 +159,33 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 /* hero product scene */
 .hero-scene{position:relative;width:100%;flex:1;min-height:300px;margin-top:10px}
 .hero-stage{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(560px,86vw);aspect-ratio:1.4/1}
-.hero-tin{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:clamp(180px,26vw,260px);aspect-ratio:1;animation:bob 6s var(--ease) infinite}
+.hero-tin{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:clamp(180px,26vw,260px);aspect-ratio:1;animation:drift 13s var(--ease-out) infinite;z-index:2}
 .hero-tin .tinlabel .lg{font-size:clamp(1.6rem,3.2vw,2.4rem)}
 .hero-tin .tinlabel .mg{font-size:clamp(1.6rem,3vw,2.2rem)}
-.hero-ground{bottom:8%;width:62%;height:34px}
+.hero-ground{bottom:8%;width:62%;height:34px;animation:ground-pulse 13s var(--ease-out) infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,calc(-50% - 16px)) rotate(2deg)}}
+/* hero tin drifts around a soft path */
+@keyframes drift{
+  0%  {transform:translate(-50%,-50%) translate(0,0)        rotate(-4deg)}
+  20% {transform:translate(-50%,-50%) translate(34px,-26px) rotate(3deg)}
+  40% {transform:translate(-50%,-50%) translate(20px,-44px) rotate(7deg)}
+  60% {transform:translate(-50%,-50%) translate(-26px,-30px) rotate(-2deg)}
+  80% {transform:translate(-50%,-50%) translate(-34px,-8px) rotate(-6deg)}
+  100%{transform:translate(-50%,-50%) translate(0,0)        rotate(-4deg)}
+}
+@keyframes ground-pulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.9}50%{transform:translateX(-50%) scale(.82);opacity:.55}}
 
-/* hero floating pouches */
+/* hero floating pouches — swirl around the scene */
 .hero-scene .pouch{width:clamp(34px,4.4vw,52px);aspect-ratio:.72}
-.hp1{left:14%;top:14%;animation:float1 7s var(--ease) infinite}
-.hp2{right:12%;top:8%;animation:float2 8s var(--ease) infinite}
-.hp3{left:6%;bottom:24%;animation:float3 6.5s var(--ease) infinite}
-.hp4{right:7%;bottom:30%;animation:float1 7.5s var(--ease) infinite .6s}
-.hp5{left:30%;bottom:8%;animation:float2 6.8s var(--ease) infinite .3s}
-.hp6{right:30%;top:2%;animation:float3 8.2s var(--ease) infinite .9s}
-@keyframes float1{0%,100%{transform:translateY(0) rotate(-14deg)}50%{transform:translateY(-26px) rotate(-4deg)}}
-@keyframes float2{0%,100%{transform:translateY(0) rotate(16deg)}50%{transform:translateY(-22px) rotate(6deg)}}
-@keyframes float3{0%,100%{transform:translateY(0) rotate(8deg)}50%{transform:translateY(-30px) rotate(-6deg)}}
+.hp1{left:14%;top:14%;animation:swirl1 9s var(--ease-out) infinite}
+.hp2{right:12%;top:8%;animation:swirl2 11s var(--ease-out) infinite}
+.hp3{left:6%;bottom:24%;animation:swirl3 8.5s var(--ease-out) infinite}
+.hp4{right:7%;bottom:30%;animation:swirl1 10s var(--ease-out) infinite .6s}
+.hp5{left:30%;bottom:8%;animation:swirl2 9.5s var(--ease-out) infinite .3s}
+.hp6{right:30%;top:2%;animation:swirl3 11.5s var(--ease-out) infinite .9s}
+@keyframes swirl1{0%,100%{transform:translate(0,0) rotate(-14deg)}33%{transform:translate(26px,-30px) rotate(6deg)}66%{transform:translate(-14px,-48px) rotate(-8deg)}}
+@keyframes swirl2{0%,100%{transform:translate(0,0) rotate(16deg)}33%{transform:translate(-30px,-26px) rotate(-6deg)}66%{transform:translate(16px,-44px) rotate(10deg)}}
+@keyframes swirl3{0%,100%{transform:translate(0,0) rotate(8deg)}33%{transform:translate(22px,-40px) rotate(-10deg)}66%{transform:translate(-24px,-18px) rotate(12deg)}}
 
 .scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-3);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;z-index:3}
 .scroll-hint .mouse{width:22px;height:34px;border:2px solid var(--ink-3);border-radius:12px;position:relative}
@@ -225,7 +235,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .evolved .lead{font-size:1.1rem;color:var(--ink-2);margin:22px 0 8px;max-width:460px}
 .evolved-feats{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;margin-top:34px}
 .feat{display:flex;gap:13px;align-items:flex-start}
-.feat .ic{width:42px;height:42px;border-radius:12px;background:var(--cream);color:var(--accent-deep);display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(217,138,43,.16);transition:transform .4s var(--ease-out),background .4s,color .4s}
+.feat .ic{width:42px;height:42px;border-radius:12px;background:var(--cream);color:var(--accent-deep);display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(47,125,246,.16);transition:transform .4s var(--ease-out),background .4s,color .4s}
 .feat:hover .ic{transform:translateY(-3px) rotate(-4deg);background:var(--grad-accent);color:#fff}
 .feat .t{font-weight:700;font-size:.98rem}
 .feat .s{color:var(--ink-2);font-size:.86rem;line-height:1.45}
@@ -243,7 +253,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .story p{color:var(--ink-2);font-size:1.04rem;margin-bottom:16px}
 .story-list{display:grid;gap:13px;margin-top:24px}
 .story-list li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
-.story-list .chk{width:23px;height:23px;border-radius:50%;background:var(--cream);color:var(--accent-deep);display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(217,138,43,.2)}
+.story-list .chk{width:23px;height:23px;border-radius:50%;background:var(--cream);color:var(--accent-deep);display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(47,125,246,.2)}
 
 /* ============================================================ STATS */
 .stats{background:var(--ink);color:#fff}
@@ -270,7 +280,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .pcard:hover .shop{transform:translateX(3px)}
 .t-mint{background:linear-gradient(160deg,#eef7f0,#dcefe2)}
 .t-blue{background:linear-gradient(160deg,#eef1fb,#dbe3f7)}
-.t-amber{background:linear-gradient(160deg,#fdf3e2,#f6e4c5)}
+.t-amber{background:linear-gradient(160deg,#eef4fe,#d9e6fb)}
 .t-berry{background:linear-gradient(160deg,#f8eef6,#eedcea)}
 .t-coffee{background:linear-gradient(160deg,#efe9e3,#e0d6cb)}
 .h-hint{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:.82rem;font-weight:600;padding:0 28px;margin-top:6px}
@@ -343,7 +353,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 /* ============================================================ CTA */
 .cta{background:var(--bg-soft)}
 .cta-box{border-radius:var(--r-xl);padding:clamp(40px,7vw,76px);background:var(--ink);color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-.cta-box .glow{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(circle,#e9a54499,transparent 70%);top:-200px;right:-120px}
+.cta-box .glow{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(circle,#5aa0ff99,transparent 70%);top:-200px;right:-120px}
 .cta-box .inner{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}
 .cta-box h2{font-size:clamp(2.2rem,5vw,3.6rem)}
 .cta-box p{color:rgba(255,255,255,.72);margin-top:16px;font-size:1.06rem;max-width:420px}
@@ -576,7 +586,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
     <div class="testi-grid">
       <figure class="quote" data-reveal data-d="1" data-cursor><div class="stars">★★★★★</div><p>"Surprised these actually work — I can tell a difference within 5–10 minutes and it's very smooth. No jitters."</p><figcaption class="who"><span class="nm">Joshua K.</span><span class="tag" style="background:#eef7f0;color:var(--mint)">Arctic Mint</span></figcaption></figure>
       <figure class="quote" data-reveal data-d="2" data-cursor><div class="stars">★★★★★</div><p>"If you're looking for instant focus in a pouch, this is it. Haven't felt this dialed in a long time."</p><figcaption class="who"><span class="nm">Kevin P.</span><span class="tag">Espresso Noir</span></figcaption></figure>
-      <figure class="quote" data-reveal data-d="3" data-cursor><div class="stars">★★★★★</div><p>"Tried quitting energy drinks 3x and failed. These let me step down without going crazy. Great kick and flavors."</p><figcaption class="who"><span class="nm">Dwarkesh S.</span><span class="tag" style="background:#fdf3e2">Citrus Surge</span></figcaption></figure>
+      <figure class="quote" data-reveal data-d="3" data-cursor><div class="stars">★★★★★</div><p>"Tried quitting energy drinks 3x and failed. These let me step down without going crazy. Great kick and flavors."</p><figcaption class="who"><span class="nm">Dwarkesh S.</span><span class="tag" style="background:#eef4fe;color:var(--accent-deep)">Citrus Surge</span></figcaption></figure>
       <figure class="quote" data-reveal data-d="4" data-cursor><div class="stars">★★★★★</div><p>"Obsessed. I use them both at work and at the gym. Discreet, fast, and the mint is genuinely incredible."</p><figcaption class="who"><span class="nm">Claudia T.</span><span class="tag" style="background:#eef1fb;color:var(--blue)">Blue Razz</span></figcaption></figure>
     </div>
   </div>
