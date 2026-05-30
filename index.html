@@ -466,6 +466,113 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 .flv-scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;z-index:4;animation:cueBob 1.8s ease-in-out infinite}
 @keyframes cueBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
+/* ============================================================ ANIMATION UPGRADES */
+
+/* Progress bar shimmer */
+#progress{background:linear-gradient(90deg,var(--accent-deep),var(--accent-2),#a78bfa,var(--accent-2),var(--accent-deep));background-size:300% 100%;animation:progressShimmer 2.4s linear infinite}
+@keyframes progressShimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+
+/* Marquee edge fades */
+.marquee{position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.marquee::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+
+/* Hero animated blobs */
+.hero-blob{position:absolute;border-radius:50%;filter:blur(88px);pointer-events:none;z-index:-1;will-change:transform}
+.hb1{width:560px;height:560px;background:radial-gradient(circle,rgba(47,125,246,.16),transparent 68%);top:-18%;left:-8%;animation:blobDrift1 22s ease-in-out infinite}
+.hb2{width:460px;height:460px;background:radial-gradient(circle,rgba(90,160,255,.12),transparent 68%);top:8%;right:-10%;animation:blobDrift2 28s ease-in-out infinite 4s}
+.hb3{width:360px;height:360px;background:radial-gradient(circle,rgba(108,79,214,.09),transparent 68%);bottom:12%;left:22%;animation:blobDrift3 19s ease-in-out infinite 8s}
+@keyframes blobDrift1{0%,100%{transform:translate(0,0)}33%{transform:translate(70px,-55px)}66%{transform:translate(-45px,65px)}}
+@keyframes blobDrift2{0%,100%{transform:translate(0,0)}40%{transform:translate(-65px,45px)}75%{transform:translate(55px,-55px)}}
+@keyframes blobDrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(45px,-55px)}}
+
+/* Hero h1 subtle glow cycle */
+@keyframes h1Glow{0%,100%{text-shadow:none}50%{text-shadow:0 0 80px rgba(47,125,246,.2)}}
+.hero.loaded h1{animation:h1Glow 6s ease-in-out 1.4s infinite}
+
+/* Section ambient blobs */
+.section-blob{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.evolved .section-blob{width:500px;height:500px;background:radial-gradient(circle,rgba(47,125,246,.07),transparent 68%);top:-20%;right:-12%;animation:blobDrift1 26s ease-in-out infinite}
+.story .section-blob{width:440px;height:440px;background:radial-gradient(circle,rgba(47,125,246,.08),transparent 68%);top:5%;left:-14%;animation:blobDrift2 20s ease-in-out infinite}
+.pricing .section-blob{width:520px;height:520px;background:radial-gradient(circle,rgba(47,125,246,.06),transparent 68%);bottom:-18%;right:-10%;animation:blobDrift3 28s ease-in-out infinite}
+.testi .section-blob{width:480px;height:480px;background:radial-gradient(circle,rgba(108,79,214,.05),transparent 68%);top:-10%;left:50%;animation:blobDrift1 24s ease-in-out infinite 5s}
+.evolved .container,.story .container,.pricing .container,.testi .container{position:relative;z-index:1}
+.evolved,.story,.pricing,.testi{overflow:hidden}
+
+/* Feat icon bounce-in on reveal */
+@keyframes iconBounce{0%{transform:scale(.55) rotate(-14deg);opacity:0}55%{transform:scale(1.22) rotate(6deg);opacity:1}75%{transform:scale(.95) rotate(-2deg)}100%{transform:scale(1) rotate(0)}}
+.feat[data-reveal].in .ic{animation:iconBounce .7s var(--ease-out) calc(var(--fi,0)*80ms + 180ms) both}
+
+/* Product card shine sweep */
+.pcard .top{overflow:hidden;position:relative}
+.pcard .top::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.38) 50%,transparent 64%);transform:translateX(-120%) skewX(-6deg);transition:none;z-index:2;pointer-events:none}
+.pcard:hover .top::after{transform:translateX(170%) skewX(-6deg);transition:transform .78s var(--ease-out)}
+
+/* Story checkmark draw */
+.story-list .chk svg path{stroke-dasharray:26;stroke-dashoffset:26;transition:stroke-dashoffset .55s var(--ease-out)}
+.story-list li[data-reveal].in .chk svg path{stroke-dashoffset:0}
+
+/* Testimonial: gradient glow border + star pop */
+.quote{position:relative;z-index:0}
+.quote::before{content:"";position:absolute;inset:-1.5px;border-radius:calc(var(--r-md) + 1.5px);background:linear-gradient(135deg,var(--accent),var(--blue),var(--accent));opacity:0;z-index:-1;transition:opacity .5s var(--ease-out)}
+.quote:hover::before{opacity:.5}
+@keyframes starPop{0%{transform:scale(0) rotate(-25deg);opacity:0}55%{transform:scale(1.28) rotate(5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+.quote[data-reveal].in .stars{animation:starPop .5s var(--ease-out) .4s both}
+
+/* Stat number glow on count-up */
+@keyframes numGlow{0%{text-shadow:none}45%{text-shadow:0 0 50px rgba(47,125,246,.55)}100%{text-shadow:none}}
+.stat[data-reveal].in .num{animation:numGlow 1.4s var(--ease-out) .6s both}
+
+/* Stats heading shimmer */
+@keyframes headingShimmer{0%{background-position:150% 50%}100%{background-position:-50% 50%}}
+.stats .section-head h2{background:linear-gradient(90deg,#ffffff 20%,#5aa0ff 40%,#ffffff 55%,#5aa0ff 70%,#ffffff 90%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:headingShimmer 5s linear infinite}
+
+/* Floating particles in stats */
+@keyframes particleRise{0%{transform:translateY(0) scale(0);opacity:0}15%{opacity:1;transform:translateY(-10px) scale(1)}85%{opacity:.5}100%{transform:translateY(-140px) scale(.4) rotate(360deg);opacity:0}}
+.stats-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--accent-2);pointer-events:none;animation:particleRise linear infinite;opacity:0}
+.stats{position:relative;overflow:hidden}
+
+/* Pricing featured: animated glow ring */
+@keyframes planGlow{0%,100%{box-shadow:var(--shadow-lg),0 0 0 0 rgba(47,125,246,.0),0 0 40px rgba(47,125,246,.1)}50%{box-shadow:var(--shadow-lg),0 0 0 10px rgba(47,125,246,.07),0 0 70px rgba(47,125,246,.2)}}
+.plan.featured{animation:planGlow 4s ease-in-out infinite}
+.plan.featured:hover{animation:none;transform:translateY(-8px);box-shadow:var(--shadow-lg),0 0 0 12px rgba(47,125,246,.1),0 0 80px rgba(47,125,246,.25)}
+
+/* CTA glow movement */
+@keyframes ctaGlowMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-80px,50px) scale(1.25)}66%{transform:translate(60px,-60px) scale(.88)}}
+.cta-box .glow{animation:ctaGlowMove 12s ease-in-out infinite}
+/* second orbiting glow */
+.cta-box .glow2{position:absolute;width:380px;height:380px;border-radius:50%;filter:blur(70px);background:radial-gradient(circle,rgba(167,139,250,.3),transparent 70%);bottom:-140px;left:-80px;animation:ctaGlowMove 16s ease-in-out infinite reverse 5s}
+
+/* Button ripple */
+.btn{overflow:hidden}
+@keyframes rippleAnim{to{transform:scale(5);opacity:0}}
+.btn-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);width:64px;height:64px;margin-left:-32px;margin-top:-32px;transform:scale(0);animation:rippleAnim .65s linear;pointer-events:none}
+
+/* FAQ: accent underline on open */
+.acc-q{position:relative}
+.acc-q::after{content:"";position:absolute;bottom:0;left:24px;right:24px;height:2px;background:var(--grad-accent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out);border-radius:2px}
+.acc.open .acc-q::after{transform:scaleX(1)}
+
+/* Social icons reveal stagger */
+@keyframes socialIn{from{opacity:0;transform:translateY(14px) scale(.78)}to{opacity:1;transform:none}}
+.socials a{opacity:0}
+.socials.revealed a:nth-child(1){animation:socialIn .5s var(--ease-out) .05s both}
+.socials.revealed a:nth-child(2){animation:socialIn .5s var(--ease-out) .13s both}
+.socials.revealed a:nth-child(3){animation:socialIn .5s var(--ease-out) .21s both}
+.socials.revealed a:nth-child(4){animation:socialIn .5s var(--ease-out) .29s both}
+
+/* Footer brand pulse */
+@keyframes brandPulse{0%,100%{opacity:1}60%{opacity:.75}}
+.footer .brand{display:inline-flex;animation:brandPulse 5s ease-in-out infinite}
+.footer .brand:hover{animation:none;opacity:1}
+
+/* Reveal: left/right variants */
+[data-reveal="left"]{opacity:0;transform:translateX(-38px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+[data-reveal="right"]{opacity:0;transform:translateX(38px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+[data-reveal="scale"]{opacity:0;transform:scale(.93);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+[data-reveal="left"].in,[data-reveal="right"].in,[data-reveal="scale"].in{opacity:1;transform:none}
+
 /* ============================================================ RESPONSIVE */
 @media (max-width:980px){
   .evolved .container,.story .container{grid-template-columns:1fr;gap:44px}
@@ -526,6 +633,9 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg" data-parallax="0.16" aria-hidden="true"></div>
+  <div class="hero-blob hb1" aria-hidden="true"></div>
+  <div class="hero-blob hb2" aria-hidden="true"></div>
+  <div class="hero-blob hb3" aria-hidden="true"></div>
 
   <span class="eyebrow hero-eyebrow reveal-up d1">Tobacco-free · Nicotine-free · Sugar-free</span>
   <h1 class="display reveal-up d1">Caffeine,<br><span class="amber">evolved.</span></h1>
@@ -796,6 +906,7 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   <div class="container">
     <div class="cta-box" data-reveal>
       <div class="glow" aria-hidden="true"></div>
+      <div class="glow2" aria-hidden="true"></div>
       <div class="inner">
         <div>
           <span class="eyebrow" style="color:var(--accent-2)">Get started</span>
@@ -1096,6 +1207,75 @@ body.menu-open .mobile-menu a:nth-child(5){transition-delay:.32s}
   document.querySelectorAll('.faq .tabs button').forEach(function(b){
     b.addEventListener('click',function(){document.querySelectorAll('.faq .tabs button').forEach(function(x){x.classList.remove('active');});b.classList.add('active');renderFaq(b.getAttribute('data-faq'));});
   });
+
+  /* ---- ANIMATION UPGRADES ---- */
+
+  /* Section blobs: inject dynamically */
+  ['.evolved','.story','.pricing','.testi'].forEach(function(sel){
+    var sec=document.querySelector(sel);
+    if(sec){var b=document.createElement('div');b.className='section-blob';b.setAttribute('aria-hidden','true');sec.insertBefore(b,sec.firstChild);}
+  });
+
+  /* Feat icon stagger index */
+  document.querySelectorAll('.feat[data-reveal]').forEach(function(el,i){el.style.setProperty('--fi',i);});
+
+  /* Button ripple */
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      var r=document.createElement('span');r.className='btn-ripple';
+      var rect=btn.getBoundingClientRect();
+      r.style.left=(e.clientX-rect.left)+'px';r.style.top=(e.clientY-rect.top)+'px';
+      btn.appendChild(r);r.addEventListener('animationend',function(){r.remove();});
+    });
+  });
+
+  /* Pricing plan 3D tilt on mousemove */
+  document.querySelectorAll('.plan').forEach(function(plan){
+    plan.addEventListener('mousemove',function(e){
+      if(reduce) return;
+      var rect=plan.getBoundingClientRect();
+      var dx=(e.clientX-rect.left-rect.width/2)/(rect.width/2);
+      var dy=(e.clientY-rect.top-rect.height/2)/(rect.height/2);
+      plan.style.transform='translateY(-8px) rotateX('+(dy*-4)+'deg) rotateY('+(dx*4)+'deg)';
+    });
+    plan.addEventListener('mouseleave',function(){plan.style.transform='';});
+  });
+
+  /* Spawn floating particles in stats section */
+  var statsSec=document.querySelector('.stats');
+  if(statsSec&&!reduce){
+    for(var pi=0;pi<16;pi++){
+      (function(idx){
+        var p=document.createElement('div');p.className='stats-particle';
+        p.style.left=(4+Math.random()*92)+'%';
+        p.style.bottom=(Math.random()*35)+'%';
+        p.style.animationDuration=(5+Math.random()*9)+'s';
+        p.style.animationDelay=(Math.random()*10)+'s';
+        var sz=(2+Math.random()*3.5);p.style.width=p.style.height=sz+'px';
+        p.style.opacity='0';
+        statsSec.appendChild(p);
+      })(pi);
+    }
+  }
+
+  /* Social icons stagger on scroll into view */
+  var socialsEl=document.querySelector('.footer .socials');
+  if(socialsEl){
+    var socIO=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');socIO.unobserve(e.target);}});
+    },{threshold:.4});
+    socIO.observe(socialsEl);
+  }
+
+  /* Use left/right reveal on story section */
+  var storyVisual=document.querySelector('.story-visual[data-reveal]');
+  var storyCopy=document.querySelector('.story-copy .eyebrow[data-reveal]');
+  if(storyVisual) storyVisual.setAttribute('data-reveal','left');
+  if(storyCopy){
+    document.querySelectorAll('.story-copy [data-reveal]').forEach(function(el,i){
+      if(i%2===0) el.setAttribute('data-reveal','right');
+    });
+  }
 
   /* form */
   var form=document.getElementById('ctaForm');
